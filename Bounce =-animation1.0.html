@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bounce</title>
+        <style>
+            body {
+                background-color: #fff7;
+                color: white;
+                font-family: Comfortaa;
+                display: grid;
+                place-items: center;
+                transform: all 0.5s linear;
+                overflow: hidden;
+            }
+            .main {
+                border: 0px solid #fff;
+                border-radius: 5px;
+                margin: 96px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                padding: 12px;
+                box-shadow: 0 0 20px #f7f7f7;
+            }
+            .fade-in {
+                animation: fade-in 0.5s linear forwards;
+            }
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            input {
+                padding: 8px;
+                border-radius: 5px;
+                outline: 0;
+                color: #fff;
+                width: 50%;
+                font-size: 18px;
+                background-color: #ffffff16;
+            }
+            .hidden {
+                display: none;
+            }
+
+            .ball {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: linear-gradient(
+                    90deg,
+                    rgb(3, 28, 49),
+                    rgb(71, 165, 191)
+                );
+                position: absolute;
+                top: -1cm;
+                z-index: -1;
+            }
+            /*Stage One*/
+            .goToBottom {
+                animation: go-bottom 0.3s ease-out forwards;
+            }
+            @keyframes go-bottom {
+                from {
+                    transform: translateY(0);
+                }
+                to {
+                    transform: translateY(103vh);
+                }
+            }
+            /*Stage Two*/
+            .go-above-mid {
+                animation: above-mid 0.3s ease-in forwards;
+            }
+            @keyframes above-mid {
+                from {
+                    transform: translateY(103vh);
+                }
+                to {
+                    transform: translateY(40vh);
+                }
+            }
+            /*Stage Three*/
+            .bounce {
+                animation: bounce 0.5s ease-out forwards;
+            }
+            @keyframes bounce {
+                0% {
+                    transform: translateY(40vh);
+                }
+                25% {
+                    transform: translateY(54vh);
+                }
+                50% {
+                    transform: translateY(48vh);
+                }
+                100% {
+                    transform: translateY(50vh);
+                }
+            }
+            /*Stage Four*/
+            .full-width {
+                animation: fullWidth 1s ease forwards;
+            }
+            @keyframes fullWidth {
+                from {
+                    top: 50%;
+                }
+                to {
+                    scale: 100;
+                }
+            }
+
+            /*new body styling*/
+            .scale-ball {
+                scale: 100;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="ball"></div>
+        <div class="main hidden">
+            <h2>Hi there, sign up and let's be friends</h2>
+            <label for="userName">Name</label>
+            <input type="text" />
+            <label for="userPass">PassWord</label>
+            <input type="password" />
+        </div>
+
+        <script>
+            const ball = document.querySelector(".ball");
+            const main = document.querySelector(".main");
+
+            //stage One
+            setTimeout(() => {
+                ball.classList.add("goToBottom");
+            }, 500);
+            //Stage Two
+            setTimeout(() => {
+                ball.classList.add("go-above-mid");
+            }, 800);
+            //Stage Three
+            setTimeout(() => {
+                ball.classList.add("bounce");
+            }, 1100);
+            //Stage Four
+            setTimeout(() => {
+                ball.classList.add("full-width");
+            }, 1400);
+
+            // the main is displaied none becauce of the class hidden, we will remove it and add the class fade-in for a simple animation
+            setTimeout(() => {
+                main.classList.remove("hidden");
+                main.classList.add("fade-in");
+            }, 1700);
+        </script>
+    </body>
+</html>
