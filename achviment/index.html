@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Achievement</title>
+        <style>
+            body {
+                background-color: #18d09c;
+                font-family: Comfortaa;
+                display: grid;
+                place-items: center;
+                height: 97.5vh;
+            }
+            .box {
+                width: 100px;
+                height: 114px;
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                padding: 4px;
+                border-radius: 8px;
+                transition: all 0.5s ease;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 192, 203, 0.403),
+                    rgba(128, 0, 128, 0.403)
+                );
+                background-position: center;
+            }
+            .box div:nth-child(1) {
+                flex: 0 0 75px;
+                border: 2px solid rgba(255, 255, 255, 0.398);
+                background: #ffffff77;
+                border-radius: 50%;
+                padding: 12px;
+                display: grid;
+                place-items: center;
+            }
+            .box img {
+                transition: all ease 0.5s;
+                width: 64px;
+                height: auto;
+            }
+            button {
+                border-radius: 25px;
+                width: 200px;
+                height: 50px;
+                border: 0;
+                outline: 0;
+                cursor: pointer;
+                font-size: 18px;
+                background-color: #0a51cacf;
+                color: #fff;
+            }
+            h1,
+            p {
+                color: #fff;
+                transition: all ease 0.5s;
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div>
+                <img src="star.png" alt="" />
+            </div>
+            <div>
+                <h1></h1>
+                <p></p>
+            </div>
+        </div>
+        <button>CLICK ME</button>
+        <script>
+            const box = document.querySelector(".box");
+            const div1 = document.querySelector(".box div:nth-child(1)");
+            const img = document.querySelector(".box img");
+            const paragraph = document.querySelector(".box p");
+            const heading = document.querySelector(".box h1");
+            const button = document.querySelector("button");
+            ("translatey(-100%)");
+            box.style.opacity = 0;
+            button.addEventListener("click", () => {
+                box.style.transform = "translatey(0%)";
+                box.style.opacity = 1;
+                img.style.transform = "rotate(45deg)";
+                setTimeout(() => {
+                    box.style.width = "500px";
+                    setTimeout(function () {
+                        /*
+                        img.style.transform =
+                            "rotate(180deg) scale(0) translatey(200%)";
+                        img.src = "trophy.png";
+                        img.style.transform =
+                            "rotate(360deg) scale(1) translatey(0%)";
+                        */
+                        heading.textContent = "Click Achivement!";
+                        paragraph.textContent =
+                            "You have successfully clicked the button!";
+                        clicked = false;
+
+                        paragraph.style.opacity = 1;
+                        heading.style.opacity = 1;
+                    }, 500);
+                }, 250);
+                setTimeout(() => {
+                    box.style.transform = "translatey(-100%)";
+                    box.style.opacity = 0;
+                }, 4000);
+            });
+        </script>
+    </body>
+</html>
